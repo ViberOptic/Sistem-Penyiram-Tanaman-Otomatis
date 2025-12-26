@@ -7,3 +7,6 @@ ESP32Servo
 LiquidCrystal
 Blynk
 BlynkESP32_BT_WF
+RTClib
+Adafruit GFX Library
+Adafruit SSD1306
