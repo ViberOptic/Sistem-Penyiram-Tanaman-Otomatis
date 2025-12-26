@@ -4,7 +4,7 @@
   "editor": "wokwi",
   "parts": [
     { "type": "wokwi-breadboard-half", "id": "bb1", "top": 25.8, "left": -342.8, "attrs": {} },
-    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 259.2, "left": -311.96, "attrs": {} },
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 268.8, "left": -311.96, "attrs": {} },
     {
       "type": "wokwi-led",
       "id": "led1",
@@ -17,11 +17,12 @@
     {
       "type": "wokwi-dht22",
       "id": "dht1",
-      "top": 105.9,
-      "left": -427.8,
-      "attrs": { "temperature": "19.8", "humidity": "25.5" }
+      "top": 129.6,
+      "left": -468.9,
+      "rotate": 270,
+      "attrs": { "temperature": "24", "humidity": "40" }
     },
-    { "type": "wokwi-servo", "id": "servo1", "top": 142, "left": 19.2, "attrs": {} },
+    { "type": "wokwi-servo", "id": "servo1", "top": 142, "left": 288, "attrs": {} },
     {
       "type": "wokwi-resistor",
       "id": "r1",
@@ -43,8 +44,17 @@
       "id": "sonar1",
       "top": -117.6,
       "left": -150,
-      "attrs": { "distance": "100" }
-    }
+      "attrs": { "distance": "177" }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot1",
+      "top": 286.7,
+      "left": -499.4,
+      "attrs": { "label": "Soil Moisture" }
+    },
+    { "type": "wokwi-ds1307", "id": "rtc1", "top": -10, "left": 5.6, "attrs": {} },
+    { "type": "wokwi-ssd1306", "id": "oled1", "top": 80, "left": -4, "attrs": {} }
   ],
   "connections": [
     [ "esp:TX", "$serialMonitor:RX", "", [] ],
@@ -62,20 +72,31 @@
     [ "lcd1:RW", "bb1:bn.16", "black", [ "v38.4", "h-96.1" ] ],
     [ "lcd1:VDD", "bb1:bn.17", "black", [ "v28.8", "h-57.5" ] ],
     [ "lcd1:VSS", "bb1:bp.18", "red", [ "v19.2", "h-38.4" ] ],
-    [ "dht1:GND", "bb1:bn.4", "black", [ "v9.6", "h19.2", "v-38.4", "h86.4" ] ],
+    [ "dht1:GND", "bb1:bn.4", "black", [ "h105.6", "v49.3" ] ],
     [ "servo1:GND", "bb1:bn.23", "black", [ "h-76.8" ] ],
     [ "servo1:V+", "bb1:bp.22", "red", [ "h0" ] ],
     [ "led2:C", "bb1:bn.6", "black", [ "v0" ] ],
-    [ "r1:2", "esp:23", "gold", [ "h0", "v66", "h38.4", "v57.6" ] ],
-    [ "dht1:VCC", "bb1:bp.2", "red", [ "v38.4", "h57.6", "v-57.6", "h57.6" ] ],
-    [ "dht1:SDA", "esp:12", "orange", [ "v0" ] ],
-    [ "servo1:PWM", "esp:14", "#8f4814", [ "h-19.2", "v-201.4", "h-441.6", "v364.8" ] ],
+    [ "r1:2", "esp:23", "gold", [ "v85.2", "h38.4", "v38.4" ] ],
+    [ "dht1:VCC", "bb1:bp.2", "red", [ "h28.8", "v-19.2", "h56" ] ],
+    [ "dht1:SDA", "esp:12", "orange", [ "h9.6", "v220.7" ] ],
+    [ "servo1:PWM", "esp:14", "#8f4814", [ "h-57.6", "v29", "h-595.2", "v163.2" ] ],
     [ "led1:C", "bb1:bn.9", "black", [ "v0" ] ],
     [ "r2:2", "esp:22", "green", [ "h19.2", "v133.2" ] ],
     [ "sonar1:VCC", "bb1:bp.5", "red", [ "v10", "h-50", "v120" ] ],
     [ "sonar1:GND", "bb1:bn.5", "black", [ "v20", "h-60", "v120" ] ],
     [ "sonar1:TRIG", "esp:26", "blue", [ "v71.1", "h-8.1", "v182.4", "h-259.2", "v144" ] ],
     [ "sonar1:ECHO", "esp:27", "cyan", [ "v90.3", "h-104.5", "v384", "h-175", "v-124.8" ] ],
+    [ "pot1:GND", "esp:GND.1", "black", [ "v28.8", "h163.05" ] ],
+    [ "pot1:VCC", "esp:3V3", "red", [ "v38.4", "h56.8", "v-96", "h86.25" ] ],
+    [ "pot1:SIG", "esp:34", "green", [ "h-0.4", "v60", "h153.45" ] ],
+    [ "rtc1:GND", "esp:GND.1", "#8f4814", [ "v-33.8", "h244.1", "v451.2" ] ],
+    [ "rtc1:VCC", "esp:3V3", "red", [ "h-40", "v35" ] ],
+    [ "rtc1:SDA", "esp:21", "blue", [ "h-50", "v253.9", "h-147.5", "v67.2" ] ],
+    [ "rtc1:SCL", "esp:22", "yellow", [ "h-60", "v215.6", "h-166.3" ] ],
+    [ "oled1:GND", "esp:GND.1", "purple", [ "v-15.2", "h-464.3", "v345.6" ] ],
+    [ "oled1:VCC", "esp:3V3", "red", [ "v15", "h-50" ] ],
+    [ "oled1:SDA", "esp:21", "blue", [ "v10", "h-60" ] ],
+    [ "oled1:SCL", "esp:22", "yellow", [ "v5", "h-70" ] ],
     [ "led1:A", "bb1:12t.e", "", [ "$bb" ] ],
     [ "led1:C", "bb1:11t.e", "", [ "$bb" ] ],
     [ "led2:A", "bb1:9t.e", "", [ "$bb" ] ],
