@@ -1,0 +1,9 @@
+# Wokwi Library List
+# See https://docs.wokwi.com/guides/libraries
+
+# Automatically added based on includes:
+DHT sensor library
+ESP32Servo
+LiquidCrystal
+Blynk
+BlynkESP32_BT_WF
